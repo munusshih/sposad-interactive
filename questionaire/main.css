@@ -1,0 +1,292 @@
+@font-face {
+    font-family: 'PPFormula';
+    src: url('../fonts/PPFormula-Extrabold.otf') format('opentype');
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem;
+    padding: 20px;
+    background: #000;
+    overflow: hidden;
+}
+
+.swiper-container {
+    width: 100vw;
+    height: 300px;
+}
+
+.slide-inner {
+    padding: 6.5rem;
+    padding-top: 0rem;
+    height: 100%;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+#quiz-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+#wave-logo.scaleDown {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 3em;
+    text-align: left;
+    margin: 0;
+    margin-top: 1rem;
+    color: #DDDDDD;
+    max-width: 10ch;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100dvh;
+}
+
+#wave-logo {
+    position: fixed;
+    top: 4rem;
+    left: 6rem;
+    max-width: 10ch;
+    transition: all 0.3s ease-in-out;
+}
+
+h1,
+.big-text {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 8em;
+    text-align: left;
+    margin: 0;
+    margin-top: 1rem;
+    line-height: 1;
+    color: #DDDDDD;
+}
+
+p {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 1.5em;
+    text-align: left;
+    margin: 0;
+    margin-top: 1rem;
+    color: #DDDDDD;
+    line-height: 2;
+    letter-spacing: 0.5px;
+    max-width: 45ch;
+    text-wrap: balance;
+}
+
+h2.explain {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 1.5em;
+    text-align: left;
+    margin: 0;
+    margin-top: 1rem;
+    color: #DDDDDD;
+    line-height: 2;
+    letter-spacing: 0.5px;
+    max-width: 45ch;
+    text-wrap: balance;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+h2.explain::before {
+    content: "*";
+}
+
+#start-container {
+    padding: 3rem;
+    position: fixed;
+    opacity: 1;
+    transition: opacity ease-out 0.5s;
+    top: 30vh;
+    z-index: 2;
+}
+
+#start-container .description {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
+.big-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 999px;
+    font-family: 'PPFormula', sans-serif;
+    font-size: 2.5em;
+    border: 0;
+    letter-spacing: 5px;
+}
+
+select {
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select.minimal {
+    background-image:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+    background-position:
+        calc(100% - 50px) calc(1em - 5px),
+        calc(100% - 30px) calc(1em - 5px),
+        calc(100% - 2.5em) 0.25em;
+    background-size:
+        20px 20px,
+        20px 20px,
+        1px 1.5em;
+    background-repeat: no-repeat;
+}
+
+select.minimal:focus {
+    background-image:
+        linear-gradient(45deg, gray 50%, transparent 50%),
+        linear-gradient(135deg, transparent 50%, gray 50%),
+        linear-gradient(to right, #ccc, #ccc);
+    background-position:
+        calc(100% - 30px) .75em,
+        calc(100% - 50px) .75em,
+        calc(100% - 2.5em) 0.5em;
+    background-size:
+        20px 20px,
+        20px 20px,
+        1px 1.5em;
+    background-repeat: no-repeat;
+    border-color: green;
+    outline: 0;
+}
+
+h3 {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 4em;
+    text-align: left;
+    margin: 0;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+    margin-bottom: 2rem;
+    color: #DDDDDD;
+    bottom: 2rem;
+    position: fixed;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    border-radius: 999px;
+    outline: none;
+    opacity: 1;
+}
+
+input[type="range"]::before {
+    content: " ";
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    transform: translate(-15%, -50%);
+    height: 1px;
+    padding: 3rem;
+    background: red;
+    border-radius: 999px;
+    z-index: -1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4rem;
+    height: 4rem;
+    background: #000;
+    border: #fff 2px solid;
+    cursor: pointer;
+    border-radius: 999px;
+}
+
+#ageLabel {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 1.5em;
+    text-align: left;
+    margin: 0;
+    margin-top: 1rem;
+    color: #DDDDDD;
+    line-height: 2;
+    letter-spacing: 0.5px;
+    max-width: 45ch;
+    text-wrap: balance;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.big-textarea {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 1.5em;
+    width: calc(100% - 4rem);
+    padding: 2rem;
+    text-align: left;
+    margin: 0;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+    margin-bottom: 2rem;
+    color: #111;
+    bottom: 2rem;
+    border-radius: 999px;
+}
+
+#wave-video {
+    width: 50%;
+    border: 2px solid #fff;
+}
+
+#start-container {
+    opacity: 0;
+    transform: translateY(-50px);
+    /* Initially hidden */
+}
+
+#wave-logo {
+    opacity: 0;
+    /* Initially hidden */
+    transform: translateY(-50px);
+    /* Move up for animation */
+}
+
+.big-btn {
+    opacity: 0;
+}
+
+
+
+#final .big-text {
+    opacity: 0;
+    transform: translateY(-50px);
+    /* Move up for animation */
+}
+
+#final p {
+    opacity: 0;
+    transform: translateY(-50px);
+    /* Move up for animation */
+}
+
+#final .big-btn {
+    opacity: 0;
+    transform: translateY(-50px);
+    /* Move up for animation */
+}

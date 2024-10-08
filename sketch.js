@@ -300,10 +300,13 @@ function windowResized() {
   } else {
     resizeCanvas(windowWidth, windowHeight);
   }
+
   for (let i = 0; i < 4; i++) {
     pg[i].remove();
     pg[i] = createGraphics(width / 4, height);
   }
+
+  pOption = -1;
 }
 
 let waveT = 0;

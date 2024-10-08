@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>視覺組 - 造浪器</title>
+    <link rel="stylesheet"
+        href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script
+        src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script>
+        const databaseIndex = "visual"; // Define the variable
+    </script>
+    <script type="module" src="../../firebase.js"></script>
+    <script type="module" defer src="../script.js"></script>
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+    <h1 id="wave-logo">Generate Your Wave <br> 造自己的浪</h1>
+    <div id="start-container">
+        <div class="description">
+            <p><strong>「新世代設計師的聲音集結在一起是什麼樣子？」</strong></p>
+            <p>為自己、為特定族群、為促進更好的生活及世界，設計者們永遠在思考如何透過作品發聲，這不僅止於表達，更是一種強而有力的呼喊或號召。音量不用大聲，因為當這些作品背後堅定有力的設計理念重擊我們心間的共鳴，就如同化為一波波聲浪以各種樣態向觀者襲來，設計者們便成了無聲卻震撼人心的造浪者，他們絕對有能力以作品掀起議題，用設計翻湧出價值。
+            </p>
+        </div>
+        <button id="start-btn" class="big-btn">開始造浪</button>
+    </div>
+
+    <div class="swiper-container" id="quiz-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="slide-inner">
+                    <h2 class="explain">問題在電視上，請點選單並選擇一個選項</h2>
+                    <h3 class="questionLeft">1 / 5</h3>
+                    <select id="answer1" class="big-btn minimal" required>
+                        <option value="" disabled selected hidden>選擇你的家鄉
+                        </option>
+                        <option value="台北市">台北市</option>
+                        <option value="新北市">新北市</option>
+                        <option value="桃園市">桃園市</option>
+                        <option value="台中市">台中市</option>
+                        <option value="台南市">台南市</option>
+                        <option value="高雄市">高雄市</option>
+                        <option value="基隆市">基隆市</option>
+                        <option value="新竹市">新竹市</option>
+                        <option value="新竹縣">新竹縣</option>
+                        <option value="苗栗縣">苗栗縣</option>
+                        <option value="彰化縣">彰化縣</option>
+                        <option value="南投縣">南投縣</option>
+                        <option value="雲林縣">雲林縣</option>
+                        <option value="嘉義市">嘉義市</option>
+                        <option value="嘉義縣">嘉義縣</option>
+                        <option value="屏東縣">屏東縣</option>
+                        <option value="宜蘭縣">宜蘭縣</option>
+                        <option value="花蓮縣">花蓮縣</option>
+                        <option value="台東縣">台東縣</option>
+                        <option value="澎湖縣">澎湖縣</option>
+                        <option value="金門縣">金門縣</option>
+                        <option value="連江縣">連江縣</option>
+                    </select>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner">
+                    <h2 class="explain">請利用滑桿選擇答案，並按下確認</h2>
+                    <h3 class="questionLeft">2 / 5</h3>
+                    <input type="range" id="answer2" min="1" max="100"
+                        value="20" required>
+                    <label for="answer5" id="ageLabel">20 歲</label>
+                    <button class="next big-btn">確認</button>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner">
+                    <h2 class="explain">問題在電視上，請點選單並選擇一個選項</h2>
+                    <h3 class="questionLeft">3 / 5</h3>
+                    <select id="answer3" class="big-btn" required>
+                        <option value="" disabled selected hidden>請選擇組別</option>
+                        <option value="1">數位動畫</option>
+                        <option value="2">視覺傳達</option>
+                        <option value="3">產品設計</option>
+                        <option value="4">建築與景觀</option>
+                        <option value="5">時尚設計</option>
+                    </select>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner">
+                    <h2 class="explain">問題在電視上，請點選單並選擇一個選項</h2>
+                    <h3 class="questionLeft">4 / 5</h3>
+                    <select id="answer4" class="big-btn" required>
+                        <option value="" disabled selected hidden>請選擇國家</option>
+                        <option value="美國">美國</option>
+                        <option value="英國">英國</option>
+                        <option value="日本">日本</option>
+                        <option value="德國">德國</option>
+                        <option value="法國">法國</option>
+                        <option value="加拿大">加拿大</option>
+                        <option value="丹麥">丹麥</option>
+                        <option value="澳洲">澳洲</option>
+                        <option value="韓國">韓國</option>
+                    </select>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner">
+                    <h2 class="explain">問題在電視上，請點選單並選擇一個選項</h2>
+                    <h3 class="questionLeft">5 / 5</h3>
+                    <input type="text" id="answer5" class="big-textarea"
+                        placeholder="請輸入你的訊息" required>
+                    <button id="submit" class="big-btn">送出</button>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner">
+                    <video id="wave-video" src="../../assets/wave-01.webm" loop
+                        muted autoplay></video>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner" id="final">
+                    <h2 class="big-text"
+                        style="width:100%; margin-left:-5px;margin-top:20rem;">
+                        專屬你的浪<br>生成好了！</h2>
+                    <p>這是菁培計畫的第 𝟐𝟎
+                        年，在迎接又一年度新世代設計者歸來的同時，這場年度成果展也將做為《菁培二十》回顧系列的首部曲，以前導概念的形式勾勒出所有菁培學員的起點：無論過去現在未來，他們以設計作為語言、化為聲浪，在每一次的場合中強勢展現自己，被看見、被聽見──
+                        「造浪者」於是登場。</p>
+                    <button id="restart" style=" margin-top:5rem;"
+                        class="big-btn">重新生成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

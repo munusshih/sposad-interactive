@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'PPFormula';
+    src: url('../fonts/PPFormula-Extrabold.otf') format('opentype');
+}
+
+.slide-content {
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 20em;
+    text-align: left;
+    margin: 0;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    color: #DDDDDD;
+}
+
+h2 {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 8em;
+    line-break: balance;
+    text-align: left;
+    margin: 0;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 1.5rem;
+}
+
+h3 {
+    font-family: 'PPFormula', sans-serif;
+    font-size: 4em;
+    text-align: left;
+    margin: 0;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+    margin-bottom: 2rem;
+    color: #DDDDDD;
+    bottom: 2rem;
+    position: fixed;
+}
+
+.screensaver {
+    width: 100vw;
+    height: 100vh;
+}
+
+.loadingtext {
+    font-weight: bold;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.dots {
+    display: inline-block;
+    width: 1.5em;
+    /* Enough width for 3 dots */
+    text-align: left;
+}
+
+@keyframes dot-blink {
+    0% {
+        content: '.';
+    }
+
+    33% {
+        content: '..';
+    }
+
+    66% {
+        content: '...';
+    }
+
+    100% {
+        content: '';
+    }
+}
+
+.dots::after {
+    content: '';
+    animation: dot-blink 1s steps(1, end) infinite;
+}
+
+#gif-element{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    display: none;
+}
+
+#gif-element img{
+    filter: invert(100%);
+}
