@@ -8,43 +8,13 @@
     <link rel="stylesheet"
         href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .swiper-container {
-            width: 100%;
-            max-width: 600px;
-            height: 300px;
-        }
-
-        .swiper-slide {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        select:invalid {
-            color: gray;
-        }
     </style>
+    <script defer type="module" src="fetch.js"></script>
 </head>
 
 <body>
-    <h1>結果</h1>
+    <h1>Quiz Results</h1>
+    <div id="quiz-index">Current Slide: <span id="currentIndex">Loading...</span></div>
 </body>
 
 </html>

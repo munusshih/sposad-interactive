@@ -7,7 +7,10 @@
     <title>心理測驗</title>
     <link rel="stylesheet"
         href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <script defer src="script.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script type="module" src="../firebase.js"></script>
+    <script type="module" defer src="script.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,7 +58,6 @@
     <div class="swiper-container" id="quiz-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <p>問題 1：你是從哪個縣市來的朋友呢？</p>
                 <select id="answer1" required>
                     <option value="" disabled selected hidden>請選擇</option>
                     <option value="台北市">台北市</option>
@@ -89,7 +91,7 @@
                     required oninput="updateLabel(this.value)">
                 <label for="answer5" id="ageLabel">20</label> 歲
                 <p>當前問題: 5 / 5</p>
-                <button onclick="nextSlide()">確認</button>
+                <button class="next">確認</button>
             </div>
             <div class="swiper-slide">
                 <p>問題 3：哪個組別對你來說最有趣？</p>
@@ -123,7 +125,7 @@
                 <p>問題 5：有什麼話想分享嗎？</p>
                 <input type="text" id="answer5" placeholder="請輸入你的答案" required>
                 <p>當前問題: 5 / 5</p>
-                <button onclick="nextSlide()">確認</button>
+                <button class="next">確認</button>
             </div>
             <div class="swiper-slide">
                 <p>感謝你完成心理測驗！按下下面的按鈕查看結果。</p>
