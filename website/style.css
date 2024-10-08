@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'PPFormula';
+    src: url('fonts/PPFormula-Extrabold.otf') format('opentype');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    cursor: none;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+#followDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: max-content;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: .25rem 1rem;
+    background: #e5e5e4;
+    color: #000;
+    border: 1px solid #e5e5e4;
+    border-radius: 20px;
+    text-align: center;
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    z-index: 9999;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8); /* Slightly scaled down */
+    pointer-events: none;
+    /* Hidden by default */
+}
+
+@media (max-width: 768px) {
+
+    /* Hide on mobile */
+    #followDiv {
+        display: none;
+    }
+}
