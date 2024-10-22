@@ -37,9 +37,9 @@ function setup() {
   let cnv;
 
   if (vertical) {
-    cnv = createCanvas(windowWidth, (windowHeight / 4) * 3);
+    cnv = createCanvas(windowWidth, (windowHeight / 5) * 4);
   } else {
-    cnv = createCanvas(windowWidth, windowHeight);
+    cnv = createCanvas(windowWidth/2, windowHeight);
   }
 
   cnv.parent("#container");
@@ -287,7 +287,7 @@ function optionChoice() {
       params.squareColor = "#8ed2c6";
       params.offsetX = (width / 100) * 3.8 + noise(frameCount / 100) * 20;
       params.offsetY = (width / 100) * 3.8 + noise(frameCount / 1000) * 20;
-      params.num = 5;
+      params.num = 10;
       params.overallX = (width / 100) * 3.8 + noise(frameCount / 100) * 20;
       params.overallY = -height / 4;
       break;
