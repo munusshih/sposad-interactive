@@ -8,10 +8,13 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
   <script
+    src="https://cdn.jsdelivr.net/npm/p5.capture@1.4.1/dist/p5.capture.umd.min.js"></script>
+  <script
     src="https://cdn.jsdelivr.net/npm/tweakpane@3.1.4/dist/tweakpane.min.js"></script>
 </head>
 
 <body>
+  <button id="recordButton">Start Recording</button>
   <style>
     body {
       background: #000;
@@ -82,7 +85,6 @@
       fifthColor: "#0000ff",
     };
 
-
     window.addEventListener("DOMContentLoaded", function () {
       const urlParams = new URLSearchParams(window.location.search);
 
@@ -112,6 +114,35 @@
         };
         window.answers = answers;
       }
+
+      document.getElementById("recordButton").addEventListener("click", () => {
+        const capture = P5Capture.getInstance();
+        const duration = 100; // Total duration in seconds
+        const totalFrames = duration * 30; // Total frames = duration in seconds * framerate
+        let recordedFrames = 0; // Track recorded frames
+
+        // Start capturing
+        capture.start({
+            format: "mp4",
+            duration: duration,
+            framerate: 30,
+            quality: 1,
+            width: 1080,
+        });
+
+        // Start updating progress
+        const interval = setInterval(() => {
+            if (recordedFrames < totalFrames) {
+                recordedFrames += 30; // Increment by the framerate (30 frames per second)
+                const percentage = Math.min((recordedFrames / totalFrames) * 100, 100);
+                console.log(`Recording: ${percentage.toFixed(2)}%`);
+            } else {
+                clearInterval(interval); // Stop updating when recording is done
+                console.log("Recording complete!");
+            }
+        }, 1000); // Update every second
+    });
+
     });
 
     let pg = [];
@@ -777,7 +808,7 @@
         graphics.push();
         for (let num = 0; num < params.num; num++) {
           graphics.push();
-          graphics.translate(params.overallX, params.overallY + height / 4);
+          graphics.translate(params.overallX, height / 4);
           graphics.translate(
             (num * params.staggerX) / 100,
             (num * params.staggerY) / 100
