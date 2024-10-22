@@ -400,20 +400,20 @@ function draw() {
     frequencyMod,
     waveType
   );
-  if (!vertical) {
-    wavePattern(
-      frequency,
-      amplitude,
-      phase,
-      dutyCycle,
-      symmetry,
-      phase2,
-      phase3,
-      amplitudeMod,
-      frequencyMod,
-      waveType
-    );
-  }
+  // if (!vertical) {
+  //   wavePattern(
+  //     frequency,
+  //     amplitude,
+  //     phase,
+  //     dutyCycle,
+  //     symmetry,
+  //     phase2,
+  //     phase3,
+  //     amplitudeMod,
+  //     frequencyMod,
+  //     waveType
+  //   );
+  // }
   pop();
 
   if (frameCount > 100000) {
