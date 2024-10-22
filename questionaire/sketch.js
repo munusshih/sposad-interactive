@@ -70,7 +70,6 @@ window.addEventListener("resize", renderIframe);
 
 function setup() {
   let cnv;
-  generateRandomColors();
 
   cnv = createCanvas(windowWidth, windowHeight);
 
@@ -286,8 +285,6 @@ function isEqual(obj1, obj2) {
 
 function optionChoice() {
   if (window.answers && !isEqual(window.answers, previousAnswers)) {
-    randomizeParams((randomWave = true));
-    generateRandomColors();
     option = int(window.answers.group);
     pOption = -1;
     params.text = window.answers.message;
@@ -531,6 +528,37 @@ function draw() {
   const phase3 = params.phase3;
   const amplitudeMod = params.amplitudeMod;
   const frequencyMod = params.frequencyMod;
+
+  // Check if window.answers exists
+  if (window.answers) {
+    // Define the properties you want to copy
+    const properties = [
+      "foregroundColor",
+      "backgroundColor",
+      "squareColor",
+      "secondColor",
+      "thirdColor",
+      "forthColor",
+      "fifthColor",
+      "frequency",
+      "amplitude",
+      "rotate",
+      "offsetX",
+      "offsetY",
+      "textSize",
+      "howManyColors",
+      "num",
+      "overallX",
+      "overallY",
+    ];
+
+    // Iterate through the properties and assign them to params only if they exist in window.answers
+    properties.forEach((prop) => {
+      if (window.answers.hasOwnProperty(prop)) {
+        params[prop] = window.answers[prop];
+      }
+    });
+  }
 
   drawingSoundWave(
     frequency,
@@ -786,51 +814,4 @@ function hexToRgb(hex, alpha) {
 
   // Return an array with the RGB values
   return color(r, g, b, alpha);
-}
-
-function generateRandomColors() {
-  params.foregroundColor = getRandomColor();
-  // params.backgroundColor = getRandomColor();
-  params.squareColor = getRandomColor();
-  params.secondColor = getRandomColor();
-  params.thirdColor = getRandomColor();
-  params.forthColor = getRandomColor();
-  params.fifthColor = getRandomColor();
-}
-
-function randomizeParams(randomWave = true) {
-  params.frequency = random(0, 10);
-  params.amplitude = random(10, 500);
-  // params.phase = random(0, TWO_PI);
-  params.dutyCycle = random(0, 1);
-  params.rotate = random(-0.1, 0.1);
-  params.offsetX = random(30, 250);
-  params.offsetY = random(30, 250);
-  params.textSize = (width / 100) * random(2, 4);
-  params.howManyColors = floor(random(1, 5));
-  console.log(params.howManyColors);
-  // params.squareYes = random([true, false]);
-  if (randomWave) {
-    params.waveType = random([
-      "Sine",
-      "Triangle",
-      "Sawtooh",
-      "Pulse",
-      "Square",
-    ]);
-  }
-  // params.staggerX = random(-1000, 1000);
-  // params.staggerY = random(-1000, 1000);
-  params.num = random(1, 30);
-  params.overallX = random(-500, 500);
-  params.overallY = random(-500, 500);
-}
-
-function getRandomColor() {
-  return (
-    "#" +
-    Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, "0")
-  );
 }

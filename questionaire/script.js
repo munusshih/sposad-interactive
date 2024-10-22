@@ -8,6 +8,41 @@ import {
 
 updateDatabaseIndex(0);
 
+let params = {
+  text: "造浪者 WAVE MAKER",
+  frequency: 5,
+  amplitude: 100,
+  phase: 0,
+  dutyCycle: 0.9,
+  symmetry: 0.5,
+  phase2: 0,
+  phase3: 0,
+  textSize: 20,
+  amplitudeMod: 0.5,
+  frequencyMod: 0,
+  yesBackground: true,
+  waveType: "Sawtooth",
+  city: "台北市",
+  country: "台灣",
+  offsetX: 10,
+  offsetY: 20,
+  rotate: 0,
+  staggerX: 10,
+  staggerY: 10,
+  num: 10,
+  overallX: 0,
+  overallY: 0,
+  squareYes: true,
+  foregroundColor: "#000000",
+  backgroundColor: "#000000",
+  howManyColors: 1,
+  squareColor: "#AA77DD",
+  secondColor: "#ff0000",
+  thirdColor: "#ffff00",
+  forthColor: "#00ff00",
+  fifthColor: "#0000ff",
+};
+
 // Swiper setup
 const swiper = new Swiper("#quiz-container", {
   allowTouchMove: false, // Disable swiping
@@ -100,6 +135,7 @@ function updateDatabaseIndex(currentIndex) {
 
 function updateDatabaseAnswer(ans) {
   const quizStateRef = ref(database, databaseIndex);
+  console.log(ans);
   update(quizStateRef, {
     answers: ans,
   })
@@ -138,6 +174,8 @@ selectElements.forEach((select, index) => {
 document.getElementById("submit").addEventListener("click", function() {
   swiper.slideNext();
   updateDatabaseIndex(6);
+  randomizeParams();
+  generateRandomColors();
 
   const answers = {
     city: document.getElementById("answer1").value, // 問題1: 縣市
@@ -145,11 +183,80 @@ document.getElementById("submit").addEventListener("click", function() {
     group: document.getElementById("answer3").value, // 問題3: 組別
     country: document.getElementById("answer4").value, // 問題4: 留學國家
     message: document.getElementById("answer5").value, // 問題5: 想分享的話
+    foregroundColor: params.foregroundColor,
+    backgroundColor: params.backgroundColor,
+    squareColor: params.squareColor,
+    secondColor: params.secondColor,
+    thirdColor: params.thirdColor,
+    forthColor: params.forthColor,
+    fifthColor: params.fifthColor,
+    frequency: params.frequency,
+    amplitude: params.amplitude,
+    rotate: params.rotate,
+    offsetX: params.offsetX,
+    offsetY: params.offsetY,
+    textSize: params.textSize,
+    howManyColors: params.howManyColors,
+    num: params.num,
+    overallX: params.overallX,
+    overallY: params.overallY,
   };
 
   pushNewAnswer(answers);
   updateDatabaseAnswer(answers);
+
+  const queryParams = new URLSearchParams(answers).toString();
+
+  const newLink = `${window.location.origin}/custom-wave.html?${queryParams}`;
+
+  console.log(newLink);
+
+  const qr = new QRious({
+    element: document.getElementById('qrcanvas'),
+    value: newLink
+  });
 });
+
+function generateRandomColors() {
+  params.foregroundColor = getRandomColor();
+  // params.backgroundColor = getRandomColor();
+  params.squareColor = getRandomColor();
+  params.secondColor = getRandomColor();
+  params.thirdColor = getRandomColor();
+  params.forthColor = getRandomColor();
+  params.fifthColor = getRandomColor();
+}
+
+function randomizeParams(randomWave = false) {
+  params.frequency = random(0, 10);
+  params.amplitude = random(10, 500);
+  // params.phase = random(0, TWO_PI);
+  params.dutyCycle = random(0, 1);
+  params.rotate = random(-0.1, 0.1);
+  params.offsetX = random(30, 250);
+  params.offsetY = random(30, 250);
+  params.howManyColors = Math.floor(random(1, 5));
+  // params.squareYes = random([true, false]);
+  // params.staggerX = random(-1000, 1000);
+  // params.staggerY = random(-1000, 1000);
+  params.num = random(5, 30);
+  params.overallX = random(-500, 500);
+  params.overallY = random(-500, 500);
+}
+
+function random(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function getRandomColor() {
+  return (
+    "#" +
+    Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, "0")
+  );
+}
+
 
 document.getElementById("restart").addEventListener("click", () => {
   location.reload();
