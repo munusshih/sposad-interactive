@@ -39,6 +39,7 @@ body {
 
 #wave-logo {
     position: relative;
+    padding-top: 1rem;
     overflow: hidden; /* Prevent overflow of the pseudo-element */
 }
 
