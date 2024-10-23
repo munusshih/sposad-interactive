@@ -57,8 +57,8 @@ body {
 
 #starting-over{
     position: fixed;
-    top: 4rem;
-    right: 3.5rem;
+    bottom: 5rem;
+    left: 3rem;
     font-family: 'PPFormula', sans-serif;
     font-size: 1rem;
     background: #000;
@@ -67,6 +67,7 @@ body {
     padding: 1rem;
     border-radius: 999px;
     z-index: 999;
+    letter-spacing: 1px;
 }
 
 #wave-logo::after {
@@ -230,6 +231,7 @@ h3 {
     color: #DDDDDD;
     bottom: 2rem;
     position: fixed;
+    right: 1rem;
 }
 
 input[type="range"] {

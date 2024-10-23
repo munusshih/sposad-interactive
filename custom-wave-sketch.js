@@ -37,28 +37,46 @@ let params = {
 const urlParams = new URLSearchParams(window.location.search);
 
 function hashCode(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = (hash << 5) - hash + char;  // Shift and sum
-        hash = hash & hash;  // Convert to 32-bit integer
-    }
-    return Math.abs(hash);  // Ensure positive
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char; // Shift and sum
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  return Math.abs(hash); // Ensure positive
 }
 
 function get8CharCodeFromUrlParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramsString = urlParams.toString();  // Convert params to a string
-    const hash = hashCode(paramsString);  // Get a numeric hash
-    const base36code = hash.toString(36);  // Convert hash to base-36 (0-9, a-z)
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramsString = urlParams.toString(); // Convert params to a string
+  const hash = hashCode(paramsString); // Get a numeric hash
+  const base36code = hash.toString(36); // Convert hash to base-36 (0-9, a-z)
 
-    // Ensure the result is 8 characters by padding or trimming
-    const code = base36code.padStart(8, '0').slice(-8);
-    return code;
+  // Ensure the result is 8 characters by padding or trimming
+  const code = base36code.padStart(8, "0").slice(-8);
+  return code;
 }
 
 const uniqueID = document.getElementById("uniqueID");
-uniqueID.innerText = "#"+get8CharCodeFromUrlParams().toUpperCase();
+const idNumber = get8CharCodeFromUrlParams().toUpperCase();
+uniqueID.innerText = "#" + idNumber;
+document.title = "專屬你的浪！ 浪型編號 #" + idNumber;
+
+document.getElementById('shareBtn').addEventListener('click', async () => {
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title:"專屬你的浪！ 浪型編號 #" + idNumber,
+                text: '這是我在 𝟐𝟎𝟐𝟒 教育部藝術與設計菁英海外培訓計畫 返國學員成果展生成的浪，展覽在臺北華山1914文創園區中4B館，只到 10/27 號！一起來造浪吧！',
+                url: window.location.href, // Or any custom link
+            });
+        } catch (err) {
+            console.error('Error sharing:', err);
+        }
+    } else {
+        alert('Web Share API is not supported in your browser.');
+    }
+});
 
 if (urlParams.has("city")) {
   const answers = {
@@ -114,7 +132,7 @@ document.getElementById("recordButton").addEventListener("click", () => {
   });
 
   isRecording = true;
-//   console.log("isRecording:", isRecording);
+  //   console.log("isRecording:", isRecording);
 });
 
 const loadingContainer = document.getElementById("loading-container");
@@ -154,7 +172,7 @@ let iglogo;
 
 function preload() {
   iglogo = loadImage("/assets/ig-story-logo2.png");
-//   console.log(iglogo); // This will log the image object once loaded
+  //   console.log(iglogo); // This will log the image object once loaded
 }
 
 function setup() {
@@ -922,7 +940,7 @@ function randomizeParams(randomWave = true) {
   params.offsetY = random(30, 250);
   params.textSize = (width / 100) * random(2, 4);
   params.howManyColors = floor(random(1, 5));
-//   console.log(params.howManyColors);
+  //   console.log(params.howManyColors);
   // params.squareYes = random([true, false]);
   if (randomWave) {
     params.waveType = random([
