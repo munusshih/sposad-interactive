@@ -170,8 +170,17 @@ selectElements.forEach((select, index) => {
   });
 });
 
+function hideStartingOver() {
+  document.getElementById("starting-over").style.display = "none";
+}
+
+document.getElementById("starting-over").addEventListener("click", () => {
+  location.reload();
+} );
+
 // end
 document.getElementById("submit").addEventListener("click", function() {
+  hideStartingOver();
   swiper.slideNext();
   updateDatabaseIndex(6);
   randomizeParams();
@@ -228,12 +237,13 @@ function generateRandomColors() {
   params.fifthColor = getRandomColor();
 }
 
+// random value generated for the user's custom wave
 function randomizeParams(randomWave = false) {
-  params.frequency = random(0, 10);
+  params.frequency = random(3, 20);
   params.amplitude = random(10, 500);
   // params.phase = random(0, TWO_PI);
   params.dutyCycle = random(0, 1);
-  params.rotate = random(-0.1, 0.1);
+  params.rotate = random(-0.01, 0.01);
   params.offsetX = random(30, 250);
   params.offsetY = random(30, 250);
   params.howManyColors = Math.floor(random(1, 5));
@@ -241,8 +251,8 @@ function randomizeParams(randomWave = false) {
   // params.staggerX = random(-1000, 1000);
   // params.staggerY = random(-1000, 1000);
   params.num = random(5, 30);
-  params.overallX = random(-500, 500);
-  params.overallY = random(-500, 500);
+  params.overallX = random(-100, 100);
+  params.overallY = random(-100, 100);
 }
 
 function random(min, max) {
@@ -291,6 +301,7 @@ function nextSlide() {
 window.onload = () => {
   document.getElementById("quiz-container").style.opacity = "0";
   randomizeVideo();
+  document.querySelector("#start-btn").style.pointerEvents = "none";
   gsap
     .timeline()
     .to("#wave-logo", {
@@ -310,12 +321,16 @@ window.onload = () => {
       "-=0.5"
     ) // Overlap animations slightly
     .to(
-      ".big-btn",
+      "#start-btn",
       {
         duration: 1.5,
         opacity: 1,
         y: 0, // Reset the Y position
         ease: "power2.out",
+        onComplete: () => {
+          // Re-enable pointer events once the animation is complete
+          document.querySelector(".big-btn").style.pointerEvents = "auto";
+        }
       },
       "-=0.5"
     ); // Animate button

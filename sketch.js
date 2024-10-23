@@ -352,18 +352,36 @@ function wavePattern(
   push();
   translate(0, 3);
   textFont("monospace");
-  text("Group: " + groupName, 220, -35);
-  text("Wave Type: " + waveType, 220, -15);
+  text("組別 Group: " + groupName, 220, -35);
+
+  switch(waveType){
+    case "Sine":
+      text("波形: Sine / 視覺傳達組", 220, -15);
+      break;
+    case "Square":
+      text("波形: Square / 建築與景觀組", 220, -15);
+      break;
+    case "Triangle":
+      text("波形: Triangle / 產品設計組", 220, -15);
+      break;
+    case "Sawtooth":
+      text("波形: Sawtooth / 時尚組", 220, -15);
+      break;
+    case "Pulse":
+      text("波形: Pulse / 數位動畫組", 220, -15);
+      break;
+  }
 
   if (frequencyMod === 0) {
     text("Amplitude Modulation: " + amplitude.toFixed(5), 220, 5);
   } else {
     text("Frequency Modulation: " + frequencyMod.toFixed(5), 220, 5);
   }
-  text("Frame Count: " + (frameCount / 1000).toFixed(3), 220, 25);
+  text("生成時間: " + (frameCount / 1000).toFixed(3), 220, 25);
   pop();
   pop();
 }
+
 
 function draw() {
   push();
@@ -389,7 +407,7 @@ function draw() {
   const frequencyMod = params.frequencyMod;
 
   drawingSoundWave(
-    frequency,
+    frequency * 1.8,
     amplitude,
     phase,
     dutyCycle,

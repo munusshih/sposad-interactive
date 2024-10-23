@@ -16,6 +16,11 @@
 
 <body>
   <style>
+    @font-face {
+      font-family: 'PPFormula';
+      src: url('fonts/PPFormula-Extrabold.otf') format('opentype');
+    }
+
     /* Glassmorphism effect */
     .loading-container {
       position: fixed;
@@ -83,12 +88,24 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in forwards;
     }
 
-    .big-container{
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .big-container {
       display: flex;
       flex-direction: column;
-      gap: .5rem;
+      gap: 0rem;
       padding: 5rem 0rem;
       justify-content: center;
       align-items: center;
@@ -97,30 +114,33 @@
 
     .button-container {
       display: flex;
-      width: 80%;
+      width: 100%;
+      max-width: calc(100% - .875rem);
       flex-direction: row;
-      gap: .5rem;
+      gap: 0rem;
       justify-content: center;
       align-items: center;
+      margin-left: .125rem;
+      margin-top: 5rem;
     }
 
-    #recordButton,
-    #downloadImage {
+    button {
       padding: .5rem .2rem;
+      box-sizing: border-box;
       background: #000;
       color: #ddd;
-      border: .5px solid #ddd;
-      border-radius: 0.5rem;
+      border: 1px solid #ddd;
+      border-bottom: none;
+      border-radius: 0rem;
       cursor: pointer;
       font-size: .8rem;
-      width: 80%;
+      width: 100%;
       letter-spacing: .1rem;
     }
 
     #sketch-container {
-      width: 80%;
-      max-width: 80%;
-      max-height: 80%;
+      width: 100%;
+      max-width: calc(100% - 1rem);
       aspect-ratio: 9 / 16;
       position: relative;
     }
@@ -130,53 +150,94 @@
       height: auto !important;
       aspect-ratio: 9 / 16;
       display: block;
-      border: .5px solid #fff;
-      border-radius: 0.5rem;
+      border: 1px solid #fff;
     }
 
-    footer{
+    footer {
       color: #ddd;
       padding-top: 2rem;
-      width: 80%;
+      width: 100%;
       text-align: left;
+      margin-left: 1rem;
+      margin-right: 1rem;
       font-size: .8rem;
       font-family: sans-serif;
       letter-spacing: .1rem;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      gap: 2rem;
     }
 
-    a{
+    a {
       color: #ddd;
       text-decoration: none;
     }
 
-    a:hover{
+    button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    a:hover {
       text-decoration: underline;
     }
 
+    #wave-logo {
+      font-family: 'PPFormula', sans-serif;
+      font-size: 1rem;
+      text-align: left;
+      color: #333;
+      max-width: 10ch;
+      margin-bottom: 2rem;
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      aspect-ratio: 2/1;
+      height: auto;
+    }
+
+    #id {
+      font-family: 'PPFormula', sans-serif;
+      font-size: 1rem;
+      text-align: left;
+      color: #ccc;
+      max-width: 10ch;
+      margin-bottom: 2rem;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      aspect-ratio: 2/1;
+      height: auto;
+    }
+
+    #id p{
+      font-size: .8rem;
+      color: #ddd;
+      text-align: right;
+      letter-spacing: 2px;
+    }
+
+    #id h2{
+      font-size: .8rem;
+      line-height: 0;
+    }
+
     @media screen and (max-width: 600px) {
-      .big-container{
+      .big-container {
         padding: 2rem 0rem;
-      }
-      .button-container {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      #recordButton,
-      #downloadImage {
-        width: 100%;
-      }
-      footer{
-        flex-direction: column;
-        gap: 1rem;
-        text-align: left;
       }
 
     }
   </style>
+  <h1 id="wave-logo">Generate Your Wave <br> 造自己的浪</h1>
+
+  <div id="id">
+    <p>浪型編號</p>
+    <h2 id="uniqueID">#333</h2>
+  </div>
   <div class="big-container">
+
     <div id="loading-container" class="loading-container hidden">
       <h3>錄製浪型中...</h3>
       <div class="progress-bar">
@@ -189,7 +250,10 @@
     </div>
 
     <div id="sketch-container"></div>
-    <footer><a href="https://www.animlab.yuntech.edu.tw/sposad/">教育部藝術與設計菁英海外培訓計畫</a><div>Web Developed by Munus Shih</div></footer>
+    <footer><a
+        href="https://www.animlab.yuntech.edu.tw/sposad/">教育部藝術與設計菁英海外培訓計畫</a>
+      <div>Web Developed by <a href="https://munusshih.com">Munus Shih</a></div>
+    </footer>
   </div>
 
 </body>

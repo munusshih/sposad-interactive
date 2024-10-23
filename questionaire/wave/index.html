@@ -35,6 +35,7 @@
     </div>
 
     <div class="swiper-container" id="quiz-container">
+        <button id="starting-over">重新答題</button>
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="slide-inner">
@@ -130,9 +131,11 @@
                     <h2 class="big-text"
                         style="width:100%; margin-left:-5px;margin-top:5rem;">
                         專屬你的浪<br>生成好了！</h2>
-                    <p>歡迎成為造浪者！透過以下QRCODE下載專屬於你的聲浪，你可以在你的社群平台與朋友一起分享你的個人宣言！
+                    <p>歡迎成為造浪者！透過以下 QRCODE 下載專屬於你的聲浪，你可以在你的社群平台與朋友一起分享你的個人宣言！
                     </p>
-                    <button id="restart" style=" margin-top:5rem;"
+                    <div class="qrcode" id="qrcode"><canvas
+                            id="qrcanvas"></canvas></div>
+                    <button id="restart" style=" margin-top:0rem;"
                         class="big-btn">重新生成</button>
                 </div>
             </div>

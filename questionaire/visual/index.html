@@ -10,7 +10,8 @@
     <script
         src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script
         src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     <script>
         const databaseIndex = "visual"; // Define the variable
@@ -25,13 +26,15 @@
     <div id="start-container">
         <div class="description">
             <p><strong>「壯大聲浪，一起成為造浪者吧！」</strong></p>
-            <p>有影響力的設計者透過圖像文字的安排就能激起觀者心中的共鳴，引導聚焦被忽略的議題，同時展現自我價值。其實我們都具備這種潛力，因為我們無時無刻都在參與設計的發生，從每天衣服的穿搭配色、會議報告的排版、刻意留下順眼的廣告 DM 等等，這些行為選擇都已經替你的美學觀點及個人理念發聲。請回答以下的小問題，打上你想說的話，讓我們為你生成專屬於你的聲浪！
+            <p>有影響力的設計者透過圖像文字的安排就能激起觀者心中的共鳴，引導聚焦被忽略的議題，同時展現自我價值。其實我們都具備這種潛力，因為我們無時無刻都在參與設計的發生，從每天衣服的穿搭配色、會議報告的排版、刻意留下順眼的廣告
+                DM 等等，這些行為選擇都已經替你的美學觀點及個人理念發聲。請回答以下的小問題，打上你想說的話，讓我們為你生成專屬於你的聲浪！
             </p>
         </div>
         <button id="start-btn" class="big-btn">開始造浪</button>
     </div>
 
     <div class="swiper-container" id="quiz-container">
+        <button id="starting-over">重新答題</button>
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="slide-inner">
@@ -124,12 +127,13 @@
             </div>
             <div class="swiper-slide">
                 <div class="slide-inner" id="final">
-                        <h2 class="big-text"
+                    <h2 class="big-text"
                         style="width:100%; margin-left:-5px;margin-top:5rem;">
                         專屬你的浪<br>生成好了！</h2>
                     <p>歡迎成為造浪者！透過以下 QRCODE 下載專屬於你的聲浪，你可以在你的社群平台與朋友一起分享你的個人宣言！
-</p>
-<div class="qrcode" id="qrcode"><canvas id="qrcanvas"></canvas></div>
+                    </p>
+                    <div class="qrcode" id="qrcode"><canvas
+                            id="qrcanvas"></canvas></div>
                     <button id="restart" style=" margin-top:0rem;"
                         class="big-btn">重新生成</button>
                 </div>

@@ -36,6 +36,30 @@ let params = {
 
 const urlParams = new URLSearchParams(window.location.search);
 
+function hashCode(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = (hash << 5) - hash + char;  // Shift and sum
+        hash = hash & hash;  // Convert to 32-bit integer
+    }
+    return Math.abs(hash);  // Ensure positive
+}
+
+function get8CharCodeFromUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramsString = urlParams.toString();  // Convert params to a string
+    const hash = hashCode(paramsString);  // Get a numeric hash
+    const base36code = hash.toString(36);  // Convert hash to base-36 (0-9, a-z)
+
+    // Ensure the result is 8 characters by padding or trimming
+    const code = base36code.padStart(8, '0').slice(-8);
+    return code;
+}
+
+const uniqueID = document.getElementById("uniqueID");
+uniqueID.innerText = "#"+get8CharCodeFromUrlParams().toUpperCase();
+
 if (urlParams.has("city")) {
   const answers = {
     city: urlParams.get("city"),
@@ -90,7 +114,7 @@ document.getElementById("recordButton").addEventListener("click", () => {
   });
 
   isRecording = true;
-  console.log("isRecording:", isRecording);
+//   console.log("isRecording:", isRecording);
 });
 
 const loadingContainer = document.getElementById("loading-container");
@@ -101,8 +125,8 @@ function updateProgress() {
   if (isRecording) {
     loadingContainer.classList.remove("hidden");
 
-    progressFill.style.width = downloadFrame + "%";
-    progressText.innerText = downloadFrame + "%";
+    progressFill.style.width = Math.min(downloadFrame, 100) + "%";
+    progressText.innerText = Math.min(downloadFrame, 100) + "%";
   }
 }
 
@@ -114,7 +138,7 @@ function hideProgress() {
 P5Capture.setDefaultOptions({
   beforeDownload(blob, context, next) {
     isRecording = false;
-    console.log("isRecording:", isRecording);
+    // console.log("isRecording:", isRecording);
     next();
   },
 });
@@ -130,7 +154,7 @@ let iglogo;
 
 function preload() {
   iglogo = loadImage("/assets/ig-story-logo2.png");
-  console.log(iglogo); // This will log the image object once loaded
+//   console.log(iglogo); // This will log the image object once loaded
 }
 
 function setup() {
@@ -160,7 +184,7 @@ function setup() {
   });
   pane.addInput(params, "frequency", {
     min: 0,
-    max: 10,
+    max: 20,
     step: 0.1,
   });
   pane.addInput(params, "amplitude", {
@@ -565,7 +589,7 @@ function wavePattern(
 function draw() {
   if (isRecording) {
     downloadFrame++;
-    console.log("downloadFrame:", downloadFrame);
+    // console.log("downloadFrame:", downloadFrame);
     updateProgress();
   } else {
     downloadFrame = 0;
@@ -621,7 +645,7 @@ function draw() {
   }
 
   drawingSoundWave(
-    frequency,
+    frequency * 1.8,
     amplitude,
     phase,
     dutyCycle,
@@ -898,7 +922,7 @@ function randomizeParams(randomWave = true) {
   params.offsetY = random(30, 250);
   params.textSize = (width / 100) * random(2, 4);
   params.howManyColors = floor(random(1, 5));
-  console.log(params.howManyColors);
+//   console.log(params.howManyColors);
   // params.squareYes = random([true, false]);
   if (randomWave) {
     params.waveType = random([

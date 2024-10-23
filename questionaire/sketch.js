@@ -95,7 +95,7 @@ function setup() {
   });
   pane.addInput(params, "frequency", {
     min: 0,
-    max: 10,
+    max: 20,
     step: 0.1,
   });
   pane.addInput(params, "amplitude", {
@@ -462,7 +462,8 @@ function wavePattern(
   waveT = 100;
   beginShape();
   push();
-  translate(25, 70);
+  translate(25, 100);
+  scale(1.8);
   rect(0, -45, 205, 80);
   noFill();
   for (let x = 5; x < 205; x += spacing) {
@@ -499,13 +500,29 @@ function wavePattern(
     text("Message: N/A", 220, -35);
   }
 
-  text("Wave Type: " + waveType, 220, -15);
-
-  if (params.city) {
-    text("City: " + params.city, 220, 5);
+  switch(waveType){
+    case "Sine":
+      text("波形: Sine / 視覺傳達組", 220, -15);
+      break;
+    case "Square":
+      text("波形: Square / 建築與景觀組", 220, -15);
+      break;
+    case "Triangle":
+      text("波形: Triangle / 產品設計組", 220, -15);
+      break;
+    case "Sawtooth":
+      text("波形: Sawtooth / 時尚組", 220, -15);
+      break;
+    case "Pulse":
+      text("波形: Pulse / 數位動畫組", 220, -15);
+      break;
   }
 
-  text("Frame Count: " + (frameCount / 1000).toFixed(3), 220, 25);
+  if (params.city) {
+    text("城市: " + params.city, 220, 5);
+  }
+
+  text("生成時間: " + (frameCount / 1000).toFixed(3), 220, 25);
   pop();
   pop();
 }
@@ -561,7 +578,7 @@ function draw() {
   }
 
   drawingSoundWave(
-    frequency,
+    frequency * 1.8,
     amplitude,
     phase,
     dutyCycle,

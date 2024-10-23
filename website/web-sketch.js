@@ -388,7 +388,7 @@ function draw() {
   const frequencyMod = params.frequencyMod;
 
   drawingSoundWave(
-    frequency,
+    frequency * 1.8,
     amplitude,
     phase,
     dutyCycle,
