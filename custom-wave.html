@@ -15,7 +15,7 @@
 
 <body>
   <button id="recordButton">下載影片 (.mp4)</button>
-  <button id="recordButton">下載圖片 (.jpg)</button>
+  <button id="downloadImage">下載圖片 (.jpg)</button>
   <style>
 
     .p5c-container{
@@ -34,7 +34,7 @@
       align-items: center;
     }
 
-    #recordButton {
+    #recordButton, #downloadImage {
       padding: 1rem 2rem;
       background: #000;
       color: #ddd;
@@ -132,6 +132,20 @@
         window.answers = answers;
       }
 
+      document.getElementById("downloadImage").addEventListener("click", () => {
+        // Get the current date and time
+        const now = new Date();
+
+        // Format the date and time (e.g., YYYY-MM-DD_HH-MM-SS)
+        const timestamp = now.toISOString().replace(/T/, '_').replace(/:/g, '-').split('.')[0];
+
+        // Create the filename with the timestamp
+        const filename = `my-custom-wave_${timestamp}.jpg`;
+
+        // Save the image with the custom filename
+        save(filename);
+    });
+
       document.getElementById("recordButton").addEventListener("click", () => {
         const capture = P5Capture.getInstance();
         const duration = 100; // Total duration in seconds
@@ -166,8 +180,14 @@
     let vertical;
     let option = 0;
     let groupName = "造浪者 WAVE MAKER";
+    let iglogo;
 
     // p5---------------------------------------------------
+
+    function preload() {
+      iglogo = loadImage('/assets/ig-story-logo2.png');
+      console.log(iglogo); // This will log the image object once loaded
+  }
 
     function setup() {
       let cnv;
@@ -645,6 +665,7 @@
             params[prop] = window.answers[prop];
           }
         });
+
       }
 
       drawingSoundWave(
@@ -677,6 +698,8 @@
         // Reset after 100,000 frames
         frameCount = 0;
       }
+
+      image(iglogo, 0, 0, width, height);
     }
 
     function getWaveValue(
