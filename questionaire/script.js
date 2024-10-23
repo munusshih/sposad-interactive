@@ -213,7 +213,8 @@ document.getElementById("submit").addEventListener("click", function() {
 
   const qr = new QRious({
     element: document.getElementById('qrcanvas'),
-    value: newLink
+    value: newLink,
+    size: 500
   });
 });
 
