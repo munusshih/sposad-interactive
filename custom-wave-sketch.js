@@ -16,7 +16,7 @@ let params = {
   city: "台北市",
   country: "台灣",
   offsetX: 10,
-  offsetY: 20,
+  offsetY: 50,
   rotate: 0,
   staggerX: 10,
   staggerY: 10,
@@ -85,6 +85,7 @@ if (urlParams.has("city")) {
     group: urlParams.get("group"),
     country: urlParams.get("country"),
     message: urlParams.get("message"),
+    textSize: Math.floor(urlParams.get("textSize")),
     foregroundColor: urlParams.get("foregroundColor"),
     backgroundColor: urlParams.get("backgroundColor"),
     squareColor: urlParams.get("squareColor"),
@@ -100,7 +101,6 @@ if (urlParams.has("city")) {
     howManyColors: urlParams.get("howManyColors"),
     num: urlParams.get("num"),
     overallX: urlParams.get("overallX"),
-    overallY: urlParams.get("overallY"),
   };
   window.answers = answers;
 }
@@ -263,7 +263,7 @@ function setup() {
     step: 0.01,
   });
   pane.addInput(params, "offsetY", {
-    min: 30,
+    min: 0,
     max: 200,
     step: 0.01,
   });
@@ -392,7 +392,6 @@ function isEqual(obj1, obj2) {
 
 function optionChoice() {
   if (window.answers && !isEqual(window.answers, previousAnswers)) {
-    randomizeParams((randomWave = true));
     generateRandomColors();
     option = int(window.answers.group);
     pOption = -1;
@@ -427,7 +426,7 @@ function optionChoice() {
       params.offsetX = (width / 100) * 3.8 + noise(frameCount / 100) * 20;
       params.offsetY = (width / 100) * 20 + noise(frameCount / 1000) * 20;
       params.overallX = (width / 100) * 3.8 + noise(frameCount / 100) * 20;
-      params.overallY = -height / 4;
+      params.overallY = -height / 2;
       break;
     case "英國":
       params.frequencyMod = 0;
@@ -448,7 +447,7 @@ function optionChoice() {
       params.offsetX = (width / 100) * 3.8 + noise(frameCount / 100) * 20;
       params.offsetY = (width / 100) * 3.8 + noise(frameCount / 1000) * 20;
       params.overallX = (width / 100) * 3.8 + noise(frameCount / 100) * 20;
-      params.overallY = -height / 4;
+      params.overallY = -height / 2;
       break;
     case "澳洲":
       params.frequencyMod = 0;
@@ -509,7 +508,7 @@ function optionChoice() {
       params.frequencyMod = sin(frameCount / 100);
       params.offsetX = (width / 100) * 3.8;
       params.offsetY = (width / 100) * 3.8;
-      params.overallY = -height / 5;
+      params.overallY = -height / 2;
       break;
   }
 
@@ -637,6 +636,7 @@ function draw() {
     const properties = [
       "foregroundColor",
       "backgroundColor",
+      "textSize",
       "squareColor",
       "secondColor",
       "thirdColor",
@@ -647,7 +647,6 @@ function draw() {
       "rotate",
       "offsetX",
       "offsetY",
-      "textSize",
       "howManyColors",
       "num",
       "overallX",
@@ -827,6 +826,7 @@ function drawingSoundWave(
     graphics.push();
     for (let num = 0; num < params.num; num++) {
       graphics.push();
+      graphics.translate(params.overallX, params.overallY);
       graphics.translate(params.overallX, height / 4);
       graphics.translate(
         (num * params.staggerX) / 100,
@@ -928,34 +928,6 @@ function generateRandomColors() {
   params.thirdColor = getRandomColor();
   params.forthColor = getRandomColor();
   params.fifthColor = getRandomColor();
-}
-
-function randomizeParams(randomWave = true) {
-  params.frequency = random(0, 10);
-  params.amplitude = random(10, 500);
-  // params.phase = random(0, TWO_PI);
-  params.dutyCycle = random(0, 1);
-  params.rotate = random(-0.1, 0.1);
-  params.offsetX = random(30, 250);
-  params.offsetY = random(30, 250);
-  params.textSize = (width / 100) * random(2, 4);
-  params.howManyColors = floor(random(1, 5));
-  //   console.log(params.howManyColors);
-  // params.squareYes = random([true, false]);
-  if (randomWave) {
-    params.waveType = random([
-      "Sine",
-      "Triangle",
-      "Sawtooh",
-      "Pulse",
-      "Square",
-    ]);
-  }
-  // params.staggerX = random(-1000, 1000);
-  // params.staggerY = random(-1000, 1000);
-  params.num = random(1, 30);
-  params.overallX = random(-500, 500);
-  params.overallY = random(-500, 500);
 }
 
 function getRandomColor() {
