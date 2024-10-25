@@ -277,6 +277,7 @@ document.getElementById("restart").addEventListener("click", () => {
 document.getElementById("start-btn").addEventListener("click", () => {
   document.getElementById("start-container").style.opacity = "0";
   document.getElementById("start-container").style.pointerEvents = "none";
+  document.getElementById("start-btn").style.pointerEvents = "none";
   document.getElementById("quiz-container").style.opacity = "1";
   document.getElementById("wave-logo").classList.add("scaleDown");
   updateDatabaseIndex(1);
