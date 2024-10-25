@@ -663,7 +663,7 @@ function draw() {
   }
 
   drawingSoundWave(
-    frequency * 1.8,
+    frequency * 1.2,
     amplitude,
     phase,
     dutyCycle,
